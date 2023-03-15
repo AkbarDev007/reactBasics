@@ -1,8 +1,25 @@
+// import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
+import PersonForm from "./DisplayForm";
+// const CREATE_USER = gql`
+//   mutation CreateUser($name: String!, $age: Int!) {
+//     createProduct(record: { name: $name, age: $age }) {
+//       record {
+//         name
+//       }
+//     }
+//   }
+// `;
 export default function ReactForm() {
-  const [data, setData] = useState("");
+  const [userData, setuserData] = useState("");
+  const [display, setDisplay] = useState(false);
+  // const [createUser, { data, loading, error }] = useMutation(CREATE_USER, {
+  //   variables: {
+  //     name: userData.firstName,
+  //     age: userData.age,
+  //   },
+  // });
   const {
     register,
     handleSubmit,
@@ -10,37 +27,56 @@ export default function ReactForm() {
   } = useForm();
 
   const onSubmit = (formData) => {
-    setData(formData);
-    alert(JSON.stringify(data));
+    setuserData(formData);
+    setDisplay(true);
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>First Name</label>
-      <input
-        {...register("firstName", {
-          required: true,
-          maxLength: 20,
-          pattern: /^[A-Za-z]+$/i,
-        })}
-      />
-      {errors?.firstName?.type === "required" && <p>This field is required</p>}
-      {errors?.firstName?.type === "maxLength" && (
-        <p>First name cannot exceed 20 characters</p>
-      )}
-      {errors?.firstName?.type === "pattern" && (
-        <p>Alphabetical characters only</p>
-      )}
-      <label>Laste Name</label>
-      <input {...register("lastName", { pattern: /^[A-Za-z]+$/i })} />
-      {errors?.lastName?.type === "pattern" && (
-        <p>Alphabetical characters only</p>
-      )}
-      <label>Age</label>a
-      <input {...register("age", { min: 18, max: 99 })} />
-      {errors.age && (
-        <p>You Must be older then 18 and younger then 99 years old</p>
-      )}
-      <input type="submit" />
-    </form>
+    <>
+      <form
+        style={{ display: "flex", justifyContent: "center", marginTop: "4rem" }}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <label>First Name</label>
+        <input
+          {...register("firstName", {
+            required: true,
+            maxLength: 20,
+            pattern: /^[A-Za-z]+$/i,
+          })}
+        />
+        {errors?.firstName?.type === "required" && (
+          <p>This field is required</p>
+        )}
+        {errors?.firstName?.type === "maxLength" && (
+          <p>First name cannot exceed 20 characters</p>
+        )}
+        {errors?.firstName?.type === "pattern" && (
+          <p>Alphabetical characters only</p>
+        )}
+        <label>Laste Name</label>
+        <input {...register("lastName", { pattern: /^[A-Za-z]+$/i })} />
+        {errors?.lastName?.type === "pattern" && (
+          <p>Alphabetical characters only</p>
+        )}
+        <label>Age</label>a
+        <input {...register("age", { min: 18, max: 99 })} />
+        {errors.age && (
+          <p>You Must be older then 18 and younger then 99 years old</p>
+        )}
+        <input type="submit" />
+      </form>
+
+      <div
+        style={{
+          marginTop: "10rem",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        {display && (
+          <PersonForm value={userData} setValueDisplay={setDisplay} />
+        )}
+      </div>
+    </>
   );
 }

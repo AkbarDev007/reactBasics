@@ -12,7 +12,6 @@ const GET_CHARACTER = gql`
     }
   }
 `;
-
 export const useChracter = (id) => {
   const { error, data, loading } = useQuery(GET_CHARACTER, {
     variables: {

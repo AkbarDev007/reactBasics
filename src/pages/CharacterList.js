@@ -56,7 +56,7 @@ const CharacterList = () => {
         {data.characters.results.map((character) => (
           <li key={character.id}>
            <Link to = {`/${character.id}`}>
-            <img src={character.image} />
+            <img src={character.image} alt={"users Images"} />
             <h2>{character.name}</h2>
           </Link>
           </li>

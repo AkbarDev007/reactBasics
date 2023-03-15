@@ -10,7 +10,7 @@ export default function Character() {
   if (loading) return <p>Spinner Loading...</p>;
   return (
     <div className="Character">
-      <img src={data.character.image} width={750} heigh={750} />
+      <img src={data.character.image} width={750} heigh={750} alt={"users Images"} />
       <div className="Character-content">
         <h1>{data.character.name}</h1>
         <div className="Character-episode">
