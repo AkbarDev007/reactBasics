@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useLazyQuery, gql } from '@apollo/client';
+import React, { useState } from "react";
+import { useLazyQuery, gql } from "@apollo/client";
 
 const GET_CHARACTER_LOCATION = gql`
   query GetCharacterLocation($name: String!) {
@@ -14,7 +14,7 @@ const GET_CHARACTER_LOCATION = gql`
 `;
 
 const CharacterSearch = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [getCharacterLocation, { loading, error, data }] = useLazyQuery(
     GET_CHARACTER_LOCATION,
     {
@@ -25,12 +25,14 @@ const CharacterSearch = () => {
   const handleInputChange = (event) => {
     const { value } = event.target;
     setSearchQuery(value);
-    if (value === '') {
-      // Reset data and searchQuery when input field is empty
-      setSearchQuery('');
+    if (value === "") {
+      setSearchQuery("");
       getCharacterLocation({ variables: { name: "@" } });
     } else {
-      getCharacterLocation();
+      if(searchQuery.length>4){
+        getCharacterLocation();
+      }
+     
     }
   };
 
@@ -45,13 +47,13 @@ const CharacterSearch = () => {
       {loading && <p>Spinner Loading...</p>}
       {error && <p>Something went Wrong :(</p>}
       <div>
-      {data && (
-        <ul>
-          {data.characters.results.map((result) => (
-            <li key={result.location.name}>{result.location.name}</li>
-          ))}
-        </ul>
-      )}
+        {data && (
+          <ul>
+            {data.characters.results.map((result) => (
+              <li key={result.location.name}>{result.location.name}</li>
+            ))}
+          </ul>
+        )}
       </div>
     </>
   );

@@ -17,16 +17,18 @@ function PersonForm({ value, setValueDisplay }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="firstName">First Name:</label>
-      <input type="text" id="firstName" {...register("firstName")} />
+     <div class="form-group">
+     <label htmlFor="firstName">First Name:</label>
+      <input class="form-control" type="text" id="firstName" {...register("firstName")} />
 
       <label htmlFor="lastName">Last Name:</label>
-      <input type="text" id="lastName" {...register("lastName")} />
+      <input class="form-control" type="text" id="lastName" {...register("lastName")} />
 
       <label htmlFor="age">Age:</label>
-      <input type="number" id="age" {...register("age")} />
+      <input class="form-control" type="number" id="age" {...register("age")} />
 
-      <button type="submit">Clear</button>
+      <button class="btn btn-primary" type="submit">Clear</button>
+     </div>
     </form>
   );
 }

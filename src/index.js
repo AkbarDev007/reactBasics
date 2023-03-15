@@ -18,5 +18,3 @@ root.render(
     </ApolloProvider>
   </React.StrictMode>
 );
-
-
