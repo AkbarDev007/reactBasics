@@ -16,20 +16,46 @@ function PersonForm({ value, setValueDisplay }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-     <div class="form-group">
-     <label htmlFor="firstName">First Name:</label>
-      <input class="form-control" type="text" id="firstName" {...register("firstName")} />
-
-      <label htmlFor="lastName">Last Name:</label>
-      <input class="form-control" type="text" id="lastName" {...register("lastName")} />
-
-      <label htmlFor="age">Age:</label>
-      <input class="form-control" type="number" id="age" {...register("age")} />
-
-      <button class="btn btn-primary" type="submit">Clear</button>
-     </div>
-    </form>
+    <>
+      <h2>Output</h2>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div class="form-group">
+          <br />
+          <label htmlFor="firstName">First Name:</label>
+          <input
+            readOnly
+            class="form-control"
+            type="text"
+            id="firstName"
+            {...register("firstName")}
+          />
+          <br />
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            readOnly
+            class="form-control"
+            type="text"
+            id="lastName"
+            {...register("lastName")}
+          />
+          <br />
+          <label htmlFor="age">Age:</label>
+          <input
+            readOnly
+            class="form-control"
+            type="number"
+            id="age"
+            {...register("age")}
+          />
+          <br />
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button class="btn btn-primary" type="submit">
+              Clear
+            </button>
+          </div>
+        </div>
+      </form>
+    </>
   );
 }
 

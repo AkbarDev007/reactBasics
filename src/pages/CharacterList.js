@@ -45,7 +45,7 @@ const CharacterList = () => {
   if (error) return <p>Something went Wrong :(</p>;
   return (
     <>
-      <Link to={`/form`}>
+      <Link to={`/shapagamForm`}>
         <h3>React Form</h3>
       </Link>
       <div
